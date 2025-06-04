@@ -1,0 +1,59 @@
+<?php
+$imageHelperLcp = $this->helper('Pagespeedfr\Lcpimage\Helper\Image'); 
+$urldesktop = 'https://mysite.com/media/wysiwyg/banner.png';
+$urlmobile = 'https://mysite.com/media/wysiwyg/minibanner.jpg';
+$urldesktop = $this->getViewFileUrl('Pagespeedfr_Lcpimage::images/hyva-desktop-banner.png');
+$urlmobile = $this->getViewFileUrl('Pagespeedfr_Lcpimage::images/hyva-desktop-banner.png');
+
+$imageUrl2x = $imageHelperLcp->resize($urldesktop,3840);
+$imageUrl1x = $imageHelperLcp->resize($urldesktop,1920);
+$imageUrlMobile2x = $imageHelperLcp->resize($urlmobile,824);
+$imageUrlMobile1x = $imageHelperLcp->resize($urlmobile,412);
+
+/* should use <?= $block->escapeUrl($imageUrl1x); ?> for magento 2 and $escaper->escapeUrl($imageUrl1x) on Hyva */
+?>
+<?php if($imageUrl1x): ?>
+<img src="<?= $imageUrl1x; ?>" class="w-full hidden md:block" srcset="<?php echo $imageUrl1x; ?> 1920w, <?php echo $imageUrl2x; ?> 2x" alt="image desktop" width="1920" height="1080" loading="eager" fetchpriority="high" />
+<?php endif; ?>
+<?php if($imageUrlMobile1x): ?>
+<img src="<?php echo $imageUrlMobile1x; ?>" class="w-full block md:hidden" srcset="<?php echo $imageUrlMobile1x; ?> 412w, <?php echo $imageUrlMobile2x; ?> 2x" alt="image mobile" width="412" height="412" loading="eager" fetchpriority="high" /> 
+<?php endif; ?>
+<?php
+$imageTest = $this->getViewFileUrl('Pagespeedfr_Lcpimage::images/magento-logo.jpg');
+
+if($imageTest):
+/* resize image */
+$imageUrl2x = $imageHelperLcp->resize($imageTest,3840);
+$imageUrl1x = $imageHelperLcp->resize($imageTest,1920);
+$imageUrlMobile2x = $imageHelperLcp->resize($imageTest,824);
+$imageUrlMobile1x = $imageHelperLcp->resize($imageTest,412);
+
+/* Transform in Webp with Yireo */
+$imageUrl2x = $imageHelperLcp->webpGoOn($imageUrl2x);
+$imageUrl1x = $imageHelperLcp->webpGoOn($imageUrl1x);
+$imageUrlMobile2x = $imageHelperLcp->webpGoOn($imageUrlMobile2x);
+$imageUrlMobile1x = $imageHelperLcp->webpGoOn($imageUrlMobile1x);
+
+/* put image size for google page speed cls lcp */
+$widthdesktop = 1920;
+$heightdesktop = 916;
+$widthmobile = 412;
+$heightmobile = 197;
+
+/* if you want to get width and height of the image create for put it in attribute don t work with htaccess
+$sizeimagedesktop = getimagesize($imageUrl1x);
+$widthdesktop = $data[0];
+$heightdesktop = $data[1];
+$sizeimagedesktop = getimagesize($imageUrlMobile1x);
+$widthmobile = $data[0];
+$heightmobile = $data[1];
+*/
+?>
+<picture class="w-full">
+    <!-- Version desktop -->
+    <source media="(min-width:768px)" srcset="<?php echo $imageUrl1x; ?> 1x, <?php echo $imageUrl2x; ?> 2x" width="<?php echo $widthdesktop; ?>" height="<?php echo $heightdesktop; ?>" >
+    <!-- Version mobile -->
+    <source media="(min-width:320px)" srcset="<?php echo $imageUrlMobile1x; ?> 1x,<?php echo $imageUrlMobile2x; ?> 2x" width="<?php echo $widthmobile; ?>" height="<?php echo $heightmobile; ?>">
+    <img class="inset-0 w-full object-cover" src="<?php echo $imageUrl1x; ?>" alt="Banner Image" loading="eager" fetchpriority="high" width="<?php echo $widthdesktop; ?>" height="<?php echo $heightdesktop; ?>">
+</picture>
+<?php endif; ?>

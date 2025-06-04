@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="content">
+        <field name="lcp_image_desktop_cms">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">lcp image desktop cms</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">page</item>
+                    <item name="dataScope" xsi:type="string">lcp_image_desktop_cms</item>
+					<item name="sortOrder" xsi:type="number">1</item>
+                </item>
+            </argument>
+			<settings>
+				<tooltip>
+                    <description>Note: put directly in webp if it webp on page load. If you use a module like yireo webp, image will be transform into .webp and not .png or .jpg. So put https://mydomain.com/media/wysiwyg/myimage.webp and not https://mydomain.com/media/wysiwyg/myimage.jpg</description>
+                </tooltip>
+            </settings>
+        </field>
+		<field name="lcp_image_mobile_cms">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">lcp image mobile cms</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">page</item>
+                    <item name="dataScope" xsi:type="string">lcp_image_mobile_cms</item>
+					<item name="sortOrder" xsi:type="number">2</item>
+                </item>
+            </argument>
+			<settings>
+                <notice translate="true">Note: put directly in webp if it webp on page load for both</notice>
+                <dataScope>lcp_image_mobile_cms</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>

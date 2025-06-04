@@ -1,0 +1,21 @@
+<?php
+
+if($getImagelcp = $block->getData('imagelcp')):
+    if(is_array($getImagelcp)):
+        foreach ($getImagelcp as $imageattr):
+            if(isset($imageattr['srcset'])):
+?>
+<link rel="preload" fetchpriority="high" as="image" imagesrcset="<?= $imageattr['srcset'] ?>" 
+<?php if(isset($imageattr['media'])): ?>
+media="<?= $imageattr['media'] ?>" 
+<?php endif; ?>
+/>
+<?php
+echo "\n";
+            endif;
+        endforeach;
+    else:
+?>
+<link rel="preload" as="image" fetchpriority="high" href="<?= $getImagelcp ?>" />
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,17 @@
+<?php
+$theproduct = $block->getProduct();
+
+if ($theproduct && $theproduct->getId()):
+		$imageHelper = $this->helper('Magento\Catalog\Helper\Image'); 
+		$urlimagefirst = $imageHelper->init($theproduct, 'product_page_image_medium')->getUrl(); 
+
+		if($urlimagefirst){
+			$imageHelperLcp = $this->helper('Pagespeedfr\Lcpimage\Helper\Image'); 
+			$imageUrl = $imageHelperLcp->onWebp($urlimagefirst);
+
+			echo '<link fetchpriority="high" rel="preload" as="image" href="'.$imageUrl.'" title="preloadlcpfr" />';
+		}
+endif; 
+?>
+  
+ 

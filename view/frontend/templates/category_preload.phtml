@@ -1,0 +1,45 @@
+<?php 
+$lcp_image_desktop = $block->getCurrentCategory()->getData('lcp_image_desktop');
+$lcp_image_mobile = $block->getCurrentCategory()->getData('lcp_image_mobile');
+$imageHelperLcp = $this->helper('Pagespeedfr\Lcpimage\Helper\Image'); 
+$stop = 0;
+	if($lcp_image_desktop && $lcp_image_mobile){
+		$lcp_image_mobile = $imageHelperLcp->onWebp($lcp_image_mobile);
+		$lcp_image_desktop = $imageHelperLcp->onWebp($lcp_image_desktop);
+		echo '<link rel="preload" fetchpriority="high" as="image" imagesrcset="'.$lcp_image_mobile.'" media="(max-width: 640px)" />' . "\n";
+		echo '<link rel="preload" fetchpriority="high" as="image" imagesrcset="'.$lcp_image_desktop.'" media="(min-width: 641px)" />' . "\n";
+		$stop =1;
+	}
+		
+	if ($lcp_image_desktop && !$lcp_image_mobile) { 
+		$lcp_image_desktop = $imageHelperLcp->onWebp($lcp_image_desktop);
+		echo '<link rel="preload" fetchpriority="high" as="image" href="'.$lcp_image_desktop.'" />' . "\n"; 
+		$stop =1;
+	}
+	
+	if ($lcp_image_mobile && !$lcp_image_desktop) {  
+		$lcp_image_mobile = $imageHelperLcp->onWebp($lcp_image_mobile);
+		echo '<link rel="preload" fetchpriority="high" as="image" imagesrcset="'.$lcp_image_mobile.'" media="(max-width: 640px)" />' . "\n";
+	}  
+$getImagelcp = $block->getData('imagelcp'); 
+if(!$stop):
+    $getImagelcp = $block->getData('imagelcp'); 
+    if($getImagelcp):
+        echo $this->getLayout() 
+        ->createBlock('Magento\Framework\View\Element\Template')  
+        ->setData('imagelcp',$getImagelcp)
+        ->setTemplate('Pagespeedfr_Lcpimage::auto_lcp_url.phtml')->toHtml();
+?>
+<?php 
+    else: 
+    $getImagelcp = $block->getData('imagelcpplugin'); 
+		if($getImagelcp):
+?>
+		<link rel="preload" as="image" fetchpriority="high" href="<?= $getImagelcp ?>" />
+		<?php 
+		endif;
+	endif;
+    ?>
+<?php 
+endif;
+?>

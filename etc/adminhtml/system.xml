@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="pagespeedfr" translate="label" sortOrder="999">
+            <label>Pagespeedfr</label>
+        </tab>
+        <section id="lcpimage" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+            <label>Lcpimage</label>
+            <tab>pagespeedfr</tab>
+            <resource>Pagespeedfr_Lcpimage::config_pagespeedfr_lcpimage</resource>
+            <group id="options" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>options</label>
+                <field id="enable" type="select" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Enable</label>
+                    <comment/>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="staticurl" type="textarea" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Static url</label>
+                    <comment>Skip lines between each URL to preload</comment>
+                </field>
+                <field id="autolcp" type="textarea" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Autolcp url</label>
+                    <comment><![CDATA[Skip lines between each action controller and path to preload. Format is the_fullactionname_controller,//DOMXPath//query/source,theattributesrc. For exemple :<br>
+                    blog_index_index,//main[@id="maincontent"]//img,src -> take the first image in the tag main with id maincontent<br>
+                    catalogsearch_result_index,//picture/source,srcset -> take the attribute srcset of the first source of the first picture of the page<br>
+                    amblog_index_post ,//div[@class="top-container"]//picture/source2,srcset -> take on amasty blog post page in div class top container the two first picture tag the first is the desktop and the second is mobile]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

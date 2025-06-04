@@ -1,0 +1,19 @@
+<?php 
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, [$block, 'isMainImage']));
+
+if (!empty($images) && empty($mainImage)) {
+    $mainImage = reset($images);
+}
+
+/** @var Image $helper */
+$mainImageData = $mainImage ?
+    $mainImage->getData('medium_image_url') :
+    '';
+	
+	if($mainImageData){
+		$imageHelperLcp = $this->helper('Pagespeedfr\Lcpimage\Helper\Image'); 
+		$mainImageData = $imageHelperLcp->onWebp($mainImageData);
+		echo '<link fetchpriority="high" rel="preload" as="image" href="'.$mainImageData.'" />';
+	}
+?>
