@@ -1,7 +1,3 @@
-Coding standard : Magento2 
-
-compatible with yireowebp
-
 # Pagespeedfr_Lcpimage
 LCP Module for magento 2 : Add preload image on page cms category and product and custom page with code / resize image / 2x / compatible Yireo_Webp2 &amp; Amasty image optimizer
 
