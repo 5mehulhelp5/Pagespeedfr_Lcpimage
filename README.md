@@ -13,6 +13,7 @@ When enabled, the module:
 Adds <link rel="preload" as="image" fetchpriority="high"> tags for LCP images.
 
 Default Behavior
+
 By default, the module automatically adds a preload link on:
 
 Product pages → preloads the first main product image.
