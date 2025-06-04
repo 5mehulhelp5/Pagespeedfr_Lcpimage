@@ -1,34 +1,55 @@
-# Pagespeedfr_Lcpimage
-LCP Module for magento 2 : Add preload image on page cms category and product and custom page with code / resize image / 2x / compatible Yireo_Webp2 &amp; Amasty image optimizer
+Pagespeedfr_Lcpimage
+LCP Module for Magento 2: Add preload image support on CMS pages, category pages, product pages, and custom pages with code-based selection, image resizing, 2x support, and compatibility with both Yireo_Webp2 and Amasty Image Optimizer.
 
-Compatible with Hyvä
+✅ Compatible with Hyvä
 
-If enable,
+Recommendation
+For optimal Google PageSpeed results and full compatibility with this module, I recommend the free plugin:
+[👉 Yireo_Webp2](https://github.com/yireo/Yireo_Webp2)
 
-Add preload link to the image you want, you choose it for each controller as you can see here :
+Features
+When enabled, the module:
+
+Adds <link rel="preload" as="image" fetchpriority="high"> tags for LCP images.
+
+Default Behavior
+By default, the module automatically adds a preload link on:
+
+Product pages → preloads the first main product image.
+
+Category pages → preloads the first image in the product listing.
+
+<link rel="preload" as="image" fetchpriority="high" href="https://mysite.fr/media/catalog/product/cache/e71e4160766cc34e6ee58774081aa4a0/6/7/67cb2cdc00022.webp">
+
+
+
+For Other page -> Allows you to choose which image to preload for each controller.
+Example:
 
 ![image](https://github.com/user-attachments/assets/acaf39aa-06fa-43d5-a849-d903c17e217d)
 
 
-if on layout page catalog_category_view you have double picture, one for mobile other for desktop
+Supports cases where you have separate images for desktop and mobile, for example on the catalog_category_view layout.
 
 ![image](https://github.com/user-attachments/assets/a3c46414-5f5f-46f2-a743-e1b2331a8570)
 
-put for exemple : catalog_category_view,//div[@class="top-container"]//picture/source2,srcset 
+In such cases, you can define a selector like : catalog_category_view,//div[@class="top-container"]//picture/source2,srcset 
 
 
-By default, automatic add <link rel="preload" as="image" fetchpriority="high" href="https://mysite.fr/media/catalog/product/cache/e71e4160766cc34e6ee58774081aa4a0/6/7/67cb2cdc00022.webp"> on product page (take the first main image) and category page (take the first product of the listing).
 The module  :
 - add, on Cms page and category page admin edit, a field "lcp mobile" and "lcp desktop" if it fill it's that url who is preload.
 - look if they are a transformation in webp by amasty or yireo and put it in consequently.
-- can resize image with helper $imageHelperLcp = $this->helper('Pagespeedfr\Lcpimage\Helper\Image');  $imageUrl2x = $imageHelperLcp->resize($urlimage,$width,$height);
+- can resize image with helper $imageHelperLcp = $this->helper('Pagespeedfr\Lcpimage\Helper\Image');  $imageUrlResize = $imageHelperLcp->resize($urlimage,$width,$height);
 - can transform image in webp with $imageHelperLcp->webpGoOn($imageUrl2x); using Yireo
+ 
 
-You have 
+🛠 INSTALLATION
 
-INSTALLATION
+Manual Installation
 
-In manual mode -> Download and unzip in app/code/Pagespeedfr/Lcpimage/ this code ; create folder if not exist
+Download and unzip the module in:
+app/code/Pagespeedfr/Lcpimage/
+(Create folders if they don't exist)
 
 With composer : composer require pagespeedfr/lcpimage
 
@@ -36,7 +57,8 @@ Then
 php bin/magento s:up
 php bin/magento setup:db-declaration:generate-whitelist --module-name=Pagespeedfr_Lcpimage
 
-For update, ask me by issue
+🔄 Updates
+For updates, please open an issue on the repository.
 
 OSL-3.0 Licence
     
