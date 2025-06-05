@@ -59,8 +59,8 @@ php bin/magento s:up
 php bin/magento setup:db-declaration:generate-whitelist --module-name=Pagespeedfr_Lcpimage
 
 After go to admin > stores > configuration > PAGESPEEDFR > lcpimage and enable it
-you can remove the demo test for resize banner image webp on module directory : Pagespeedfr/Lcpimage/view/frontend/layout/cms_index_index.xml and comment
- <!-- <block class="Magento\Framework\View\Element\Template" name="test_lcp_image" template="Pagespeedfr_Lcpimage::test.phtml" ifconfig="lcpimage/options/enable" /> -->
+you can remove the demo test for resize banner image webp on module directory : Pagespeedfr/Lcpimage/view/frontend/layout/cms_index_index.xml and comment this line
+<block class="Magento\Framework\View\Element\Template" name="test_lcp_image" template="Pagespeedfr_Lcpimage::test.phtml" ifconfig="lcpimage/options/enable" />
 
 
 🔄 Updates
