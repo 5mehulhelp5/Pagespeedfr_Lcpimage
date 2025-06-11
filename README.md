@@ -28,7 +28,7 @@ For Other page -> Allows you to choose which image to preload for each controlle
 Example:
 
 ![image](https://github.com/user-attachments/assets/acaf39aa-06fa-43d5-a849-d903c17e217d)
-
+(cms_index_index,//main[@id="maincontent"]//picture/source,srcset ->here take the first picture on home page of maincontent)
 
 Supports cases where you have separate images for desktop and mobile, for example on the catalog_category_view layout.
 
@@ -42,6 +42,7 @@ The module  :
 - look if they are a transformation in webp by amasty or yireo and put it in consequently.
 - can resize image with helper $imageHelperLcp = $this->helper('Pagespeedfr\Lcpimage\Helper\Image');  $imageUrlResize = $imageHelperLcp->resize($urlimage,$width,$height);
 - can transform image in webp with $imageHelperLcp->webpGoOn($imageUrl2x); using Yireo
+
  
 
 🛠 INSTALLATION
