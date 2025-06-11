@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="columns.top">
-           <block class="Magento\Framework\View\Element\Template" name="test_lcp_image" template="Pagespeedfr_Lcpimage::test.phtml" ifconfig="lcpimage/options/enable" />
+          <!-- <block class="Magento\Framework\View\Element\Template" name="test_lcp_image" template="Pagespeedfr_Lcpimage::test.phtml" ifconfig="lcpimage/options/enable" />-->
         </referenceContainer>
     </body>
 </page>
