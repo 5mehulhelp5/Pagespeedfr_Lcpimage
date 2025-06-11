@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="head.additional">
-            <block class="Pagespeedfr\Lcpimage\Block\PageLcp" name="auto_lcp_url" ifconfig="lcpimage/options/enable" /> 
+            <block class="Pagespeedfr\Lcpimage\Block\PageLcp" name="custompageview" ifconfig="lcpimage/options/enable" /> 
         </referenceBlock>
     </body>
 </page>
